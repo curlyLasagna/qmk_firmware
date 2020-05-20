@@ -9,7 +9,7 @@ MCU = atmega32u4
 #   QMK DFU      qmk-dfu
 #   ATmega32A    bootloadHID
 #   ATmega328P   USBasp
-BOOTLOADER = caterina
+BOOTLOADER = qmk-dfu
 
 # Build Options
 #   change to "no" to disable the options, or define them in the Makefile in
@@ -40,3 +40,5 @@ SRC += ssd1306.c
 # CFLAGS += -flto
 
 DEFAULT_FOLDER = crkbd/rev1
+#RGBLIGHT_ENABLE = no
+#RGB_MATRIX_ENABLE = WS2812

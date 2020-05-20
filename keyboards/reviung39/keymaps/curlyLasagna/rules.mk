@@ -1,0 +1,2 @@
+EXTRAFLAGS += -flto
+MOUSEKEY_ENABLE = yes
