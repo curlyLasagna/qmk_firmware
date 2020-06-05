@@ -13,7 +13,6 @@
 #include "sendchar.h"
 #include "timer.h"
 
-extern const unsigned char font[] PROGMEM;
 
 // Set this to 1 to help diagnose early startup problems
 // when testing power-on with ble.  Turn it off otherwise,
@@ -21,6 +20,7 @@ extern const unsigned char font[] PROGMEM;
 // with the matrix scan, causing keys to drop.
 #define DEBUG_TO_SCREEN 0
 
+extern const unsigned char font[] PROGMEM;
 //static uint16_t last_battery_update;
 //static uint32_t vbat;
 //#define BatteryUpdateInterval 10000 /* milliseconds */

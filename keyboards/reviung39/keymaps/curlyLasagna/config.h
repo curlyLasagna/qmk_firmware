@@ -18,11 +18,16 @@
 
 // place overrides here
 #define RGB_DI_PIN D3
-#define DYNAMIC_MACRO_NESTING
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+#define TAPPING_TERM 400
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_FORCE_HOLD
+
+/* One shot settings */
+#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 2000
 
 /* Leader key */
 #define LEADER_PER_KEY_TIMING
