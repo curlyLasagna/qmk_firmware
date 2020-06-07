@@ -88,3 +88,4 @@ void matrix_write_P(struct CharacterMatrix *matrix, const char *data);
 void matrix_render(struct CharacterMatrix *matrix);
 
 bool process_record_gfx(uint16_t keycode, keyrecord_t *record);
+extern const unsigned char font[] PROGMEM;

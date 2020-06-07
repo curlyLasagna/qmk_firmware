@@ -15,13 +15,13 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT(
-	KC_ESC, 		KC_Q, 	KC_W,	 KC_E, 	KC_R, 	KC_T, /*|*/	 KC_Y, 	 KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	  KC_BSPC, 
+	KC_TAB, 		KC_Q, 	KC_W,	 KC_E, 	KC_R, 	KC_T, /*|*/	 KC_Y, 	 KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	  KC_DEL, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	LCTL_T(KC_TAB), KC_A, 	KC_S, 	 KC_D, 	KC_F,	KC_G, /*|*/	 KC_H, 	 KC_J, 	KC_K, 	 KC_L, 	 KC_SCLN, LALT_T(KC_ENT), 
+	KC_LCTL, 		KC_A, 	KC_S, 	 KC_D, 	KC_F,	KC_G, /*|*/	 KC_H, 	 KC_J, 	KC_K, 	 KC_L, 	 KC_SCLN, KC_LALT, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	OSM(MOD_LSFT), 		KC_Z, 	KC_X,  	 KC_C, 	KC_V, 	KC_B, /*|*/  KC_N, 	 KC_M, 	KC_COMM, KC_DOT, KC_SLSH, LT(ETC, KC_GRV), 
+	OSM(MOD_LSFT), 	KC_Z, 	KC_X,  	 KC_C, 	KC_V, 	KC_B, /*|*/  KC_N, 	 KC_M, 	KC_COMM, KC_DOT, KC_SLSH, LT(ETC, KC_GRV), 
 	/*---------------------------------------------------------------------------------------------------------------*/
-			OSM(MOD_LCTL), LT(LOWER, KC_ESC), SFT_T(KC_SPC),   /*|*/	 LGUI_T(KC_ENT), LT(RAISE, KC_BSPC), OSM(MOD_LALT)
+		OSM(MOD_LCTL), LT(LOWER, KC_ESC), SFT_T(KC_SPC),  /*|*/	 	LGUI_T(KC_ENT), LT(RAISE, KC_BSPC), OSM(MOD_LALT)
 	),
 											
 	[LOWER] = LAYOUT(
@@ -29,7 +29,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/*---------------------------------------------------------------------------------------------------------------*/
 	KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, KC_DEL,  KC_TRNS, /*|*/ KC_LBRC, KC_RBRC, KC_BSLS, KC_QUOT, KC_TRNS, KC_TRNS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	KC_TRNS, KC_MPRV, KC_MPLY, KC_MFFD, KC_BSPC, KC_TRNS, /*|*/ KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+	KC_TRNS, KC_MPRV, KC_MPLY, KC_MFFD, KC_LGUI, KC_LALT, /*|*/ KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
 					KC_TRNS, KC_TRNS, KC_TRNS, 							KC_TRNS, KC_TRNS, KC_TRNS
 	),
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/*---------------------------------------------------------------------------------------------------------------*/
 	KC_TRNS, KC_WH_D, KC_WH_U, KC_TRNS, KC_TRNS, KC_TRNS, /*|*/ KC_TRNS, KC_TRNS, KC_ACL0, KC_ACL1, KC_ACL2, KC_TRNS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-					KC_TRNS, KC_TRNS, KC_TRNS, 							KC_TRNS, KC_TRNS, KC_TRNS
+					KC_TRNS, KC_TRNS, KC_MS_BTN1, 					KC_MS_BTN2, KC_TRNS, KC_TRNS
 	)
 };
 
@@ -64,15 +64,18 @@ void matrix_init_user(void) {
 
 #ifdef SSD1306OLED
 // When add source files to SRC in rules.mk, you can use functions.
+
 void set_keylog(uint16_t keycode, keyrecord_t *record);
+void set_timelog(void);
+
 const char *read_layer_state(void);
 const char *read_logo(void);
 const char *read_keylog(void);
 const char *read_keylogs(void);
-// const char *read_timelog(void);
+const char *read_timelog(void);
+
 // const char *read_mode_icon(bool swap);
 // const char *read_host_led_state(void);
-// void set_timelog(void);
 void matrix_scan_user(void) {
 	iota_gfx_task();
 }
@@ -84,23 +87,26 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
-//char wpm[10];
-//const char *read_wpm(void) {
-//	snprintf(wpm, sizeof(wpm), "WPM: %d", get_current_wpm());
-//	return wpm;
-//}
+char 
+	wpm[10],
+
+const char *read_wpm(void) {
+	snprintf(wpm, sizeof(wpm), "\nWPM: %d", get_current_wpm());
+	decay_wpm();
+	return wpm;
+}
 
 void matrix_render_user(struct CharacterMatrix *matrix) {
   if (is_master) {
-	//matrix_write_ln(matrix, read_wpm());
+		if(get_current_wpm() > 1)
+    //matrix_write_ln(matrix, read_timelog());
     //matrix_write(matrix, read_logo());
-    //matrix_write_ln(matrix, read_keylogs());
     //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
     //matrix_write_ln(matrix, read_host_led_state());
   } else {
     matrix_write_ln(matrix, read_layer_state());
     matrix_write_ln(matrix, read_keylog());
-    //matrix_write_ln(matrix, read_timelog());
+	matrix_write_ln(matrix, read_wpm());
   }
 }
 
@@ -117,11 +123,15 @@ void iota_gfx_task_user(void) {
   matrix_render_user(&matrix);
   matrix_update(&display, &matrix);
 }
+
 #endif
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
 #ifdef SSD1306OLED
     set_keylog(keycode, record);
+	set_timelog();
+	update_wpm(keycode);
 #endif
   }
   return true;

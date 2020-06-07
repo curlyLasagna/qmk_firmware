@@ -1,8 +1,17 @@
 #pragma once
-#define DYNAMIC_MACRO_NESTING
+
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
+
+#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 200
+
+/* One shot settings */
+#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TIMEOUT 2000
+
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 250
