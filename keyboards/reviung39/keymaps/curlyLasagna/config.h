@@ -18,8 +18,8 @@
 
 // place overrides here
 #define RGB_DI_PIN D3
-#define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
+
 #define TAPPING_TERM 400
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
@@ -39,21 +39,13 @@
 	#define RGBLIGHT_HUE_STEP 16
 	#define RGBLIGHT_SAT_STEP 16
 	#define RGBLIGHT_VAL_STEP 16
-	/* The maximum brightness level */
 	#define RGBLIGHT_LIMIT_VAL 255 
-	/* If defined, the RGB lighting will be switched off when the host goes to sleep */
 	#define RGBLIGHT_SLEEP  
-
-	/*== all animations enable ==*/
-	//  #define RGBLIGHT_ANIMATIONS
-
 	/*== or choose animations ==*/
 	#define RGBLIGHT_EFFECT_RAINBOW_MOOD
 	#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-	#define RGBLIGHT_EFFECT_KNIGHT
 	#define RGBLIGHT_EFFECT_STATIC_GRADIENT
 	#define RGBLIGHT_EFFECT_ALTERNATING
-	#define RGBLIGHT_EFECT_SNAKE
 	//#define RGBLIGHT_EFFECT_CHRISTMAS
 	//#define RGBLIGHT_EFFECT_BREATHING
 
