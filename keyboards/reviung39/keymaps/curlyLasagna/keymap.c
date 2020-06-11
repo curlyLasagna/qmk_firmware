@@ -55,6 +55,18 @@ void matrix_scan_user(void) {
   }
 }
 
+dynamic_macro_record_start_user(void) {
+	rgblight_mode_noeeprom()
+}
+
+dynamic_macro_record_end_user(1) {
+
+}
+
+dynamic_macro_record_end_user(-1) {
+
+}
+
 //void leader_start(void) {
 //	rgblight_mode_noeeprom(14);	
 //}
@@ -66,32 +78,3 @@ void matrix_scan_user(void) {
 //	else 
 //		rgblight_setrgb(255, 0, 0);
 //}
-
-/*const rgblight_segment_t PROGMEM lower[] = \
-//RGBLIGHT_LAYER_SEGMENTS( \
-//    {10, 10, HSV_CHARTREUSE} \
-//);
-//
-//const rgblight_segment_t PROGMEM raise[] = \
-//RGBLIGHT_LAYER_SEGMENTS( \
-//    {10, 10, HSV_RED} \
-//);
-//
-//const rgblight_segment_t PROGMEM etc[] = \
-//RGBLIGHT_LAYER_SEGMENTS( \
-//    {10, 10, HSV_MAGENTA} \
-//);
-//
-//const rgblight_segment_t* const PROGMEM rgb_layers[] = \
-//	RGBLIGHT_LAYERS_LIST( \
-//			lower, \
-//			raise, \
-//			etc);
-//
-//layer_state_t layer_state_set_user(layer_state_t state) {
-//    rgblight_set_layer_state(0, layer_state_cmp(state, LOWER));
-//    rgblight_set_layer_state(1, layer_state_cmp(state, RAISE));
-//    rgblight_set_layer_state(2, layer_state_cmp(state, ETC));
-//    return state;
-//}
-*/

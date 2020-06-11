@@ -8,10 +8,10 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT_planck_mit (
-			KC_TAB,  		KC_Q,   KC_W, 	  KC_E,    KC_R,  KC_T,   					  	KC_Y,     KC_U,     		 KC_I,     KC_O,    KC_P,    KC_DEL, 
-			KC_LCTL, 		KC_A,   KC_S, 	  KC_D,    KC_F,  KC_G,   					  	KC_H,     KC_J,     		 KC_K,     KC_L,    KC_SCLN, LALT_T(KC_ENT), 
-			OSM(MOD_LSFT), 	KC_Z,   KC_X, 	  KC_C,    KC_V,  KC_B,   					  	KC_N,     KC_M,     		 KC_COMM,  KC_DOT,  KC_SLSH, KC_LEAD, 
-			KC_LCTL, 	    KC_INS, KC_LGUI,  KC_LALT, LT(LOWER, KC_ESC), LGUI_T(KC_SPC), 			  LT(RAISE, KC_ENT), KC_LEFT,  KC_DOWN, KC_UP,   KC_RGHT
+			KC_TAB,  		KC_Q,   KC_W, 	  KC_E,    KC_R,  	    		KC_T,     KC_Y,     KC_U,     		   KC_I,     KC_O,    KC_P,    KC_DEL, 
+			KC_LCTL, 		KC_A,   KC_S, 	  KC_D,    KC_F,  	    		KC_G,     KC_H,     KC_J,     		   KC_K,     KC_L,    KC_SCLN, LALT_T(KC_ENT), 
+			OSM(MOD_LSFT), 	KC_Z,   KC_X, 	  KC_C,    KC_V,  	    		KC_B,     KC_N,     KC_M,     		   KC_COMM,  KC_DOT,  KC_SLSH, KC_LEAD, 
+			KC_LCTL, 	    KC_INS, KC_LGUI,  KC_LALT, LT(LOWER, KC_ESC), 	LGUI_T(KC_SPC), 	LT(RAISE, KC_ENT), KC_LEFT,  KC_DOWN, KC_UP,   KC_RGHT
 	),
 
 	[LOWER] = LAYOUT_planck_mit (
@@ -23,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[RAISE] = LAYOUT_planck_mit (
 			KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   				KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, KC_F12, 
-			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 				KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS, KC_TRNS, 
+			KC_TRNS, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, DM_RSTP, 				KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS, KC_TRNS, 
 			KC_TRNS, KC_LCTL, KC_LGUI, KC_LALT, KC_PSCR, KC_BRK,  				KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DEL, KC_CAPS, 
 			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TAB,  		    KC_TRNS, 			 KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 	)
@@ -37,20 +37,13 @@ void matrix_scan_user(void) {
     leader_end();
 
     SEQ_ONE_KEY(KC_F) {
-      // Anything you can do in a macro.
       SEND_STRING("QMK is awesome.");
     }
     SEQ_TWO_KEYS(KC_D, KC_D) {
       SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
     }
-    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-      SEND_STRING("https://start.duckduckgo.com\n");
-    }
-    SEQ_TWO_KEYS(KC_A, KC_S) {
-      register_code(KC_LGUI);
-      register_code(KC_S);
-      unregister_code(KC_S);
-      unregister_code(KC_LGUI);
+    SEQ_THREE_KEYS(KC_R, KC_S, KC_T) {
+      SEND_STRING("cd ~/qmk_firmware; make niu_mini:curlyLasagna:dfu");
     }
   }
 }

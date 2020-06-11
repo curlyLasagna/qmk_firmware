@@ -19,14 +19,21 @@
 // place overrides here
 #define RGB_DI_PIN D3
 #define NO_ACTION_FUNCTION
+#define NO_ACTION_MACRO
+#ifndef NO_DEBUG
+#define NO_DEBUG
+#endif // !NO_DEBUG
+#if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
+#define NO_PRINT
+#endif // !NO_PRINT
 
-#define TAPPING_TERM 400
+#define TAPPING_TERM 250
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
 
 /* One shot settings */
-#define ONESHOT_TAP_TOGGLE 2
+#define ONESHOT_TAP_TOGGLE 3
 #define ONESHOT_TIMEOUT 2000
 
 /* Leader key */
