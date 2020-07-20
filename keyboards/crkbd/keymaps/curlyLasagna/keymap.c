@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+
 extern uint8_t  is_master;
 static uint32_t oled_timer = 0;
 
@@ -17,23 +18,23 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT(
-	KC_TAB, 		KC_Q, 	KC_W,	 KC_E, 	KC_R, 	KC_T, /*|*/	 KC_Y, 	 KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	  KC_DEL, 
+	KC_TAB, 		KC_Q, 	KC_W,	 KC_E, 	KC_R, 	KC_T, /*|*/	 KC_Y, 	 KC_U, 	KC_I, 	 KC_O, 	 KC_P, 	  KC_BSPC, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	KC_LCTL, 		KC_A, 	KC_S, 	 KC_D, 	KC_F,	KC_G, /*|*/	 KC_H, 	 KC_J, 	KC_K, 	 KC_L, 	 KC_SCLN, KC_LALT, 
+	LCTL_T(KC_ESC),	KC_A, 	KC_S, 	 KC_D, 	KC_F,	KC_G, /*|*/	 KC_H, 	 KC_J, 	KC_K, 	 KC_L, 	 KC_SCLN, KC_QUOT, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	OSM(MOD_LSFT), 	KC_Z, 	KC_X,  	 KC_C, 	KC_V, 	KC_B, /*|*/  KC_N, 	 KC_M, 	KC_COMM, KC_DOT, KC_SLSH, KC_GRV, 
+	OSM(MOD_LSFT), 	KC_Z, 	KC_X,  	 KC_C, 	KC_V, 	KC_B, /*|*/  KC_N, 	 KC_M, 	KC_COMM, KC_DOT, KC_SLSH, KC_LEAD, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-					KC_LGUI, LT(LOWER, KC_ESC), KC_SPC,   /*|*/	 	LGUI_T(KC_ENT), LT(RAISE, KC_BSPC), KC_LEAD
+			KC_LALT, MO(LOWER), LGUI_T(KC_SPC),   		 /*|*/	 	LSFT_T(KC_ENT), MO(RAISE), RGB_TOG
 	),
 											
 	[LOWER] = LAYOUT(
-	KC_GRV,  KC_1, 	  KC_2,    KC_3,    KC_4,    KC_5,    /*|*/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    RGB_MOD, 
+	KC_GRV,  KC_1,   KC_2,    KC_3,    KC_4,     KC_5,    /*|*/ KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_DEL, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, RGB_TOG,  RGB_VAI, /*|*/ KC_LBRC, KC_RBRC, KC_BSLS, KC_QUOT, TG(GAME), KC_TRNS, 
+	KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, RGB_MOD,  RGB_VAI, /*|*/ KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_TRNS, KC_TRNS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	KC_TRNS, KC_MPRV, KC_MPLY, KC_MFFD, RGB_HUI, RGB_SAI, /*|*/ KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, RESET, 
+	KC_TRNS, KC_MPRV, KC_MPLY, KC_MFFD, RGB_HUI,  RGB_SAI, /*|*/ KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, RESET, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-					KC_TRNS, KC_TRNS, KC_TRNS, 							KC_TRNS, KC_BSPC, KC_TRNS
+													KC_TRNS, KC_TRNS, KC_TRNS, 							KC_TRNS, TG(GAME), KC_TRNS
 	),
 
 	[RAISE] = LAYOUT(
@@ -41,31 +42,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/*---------------------------------------------------------------------------------------------------------------*/
 	KC_TRNS, DM_REC1, DM_REC2, DM_PLY1,  DM_PLY2, DM_RSTP,/*|*/  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  KC_INS,  KC_TRNS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-	KC_TRNS, KC_LCTL, KC_LGUI, KC_LALT,  KC_PSCR, KC_BRK, /*|*/  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   KC_TRNS,  KC_CAPS, 
+	KC_TRNS, KC_LCTL, KC_LGUI, KC_LALT,	 KC_PSCR, KC_BRK, /*|*/  KC_HOME, KC_PGDN, KC_PGUP, KC_END,   KC_TRNS,  KC_CAPS, 
 	/*---------------------------------------------------------------------------------------------------------------*/
-					KC_TRNS, KC_TAB, KC_TRNS, 							KC_TRNS, KC_TRNS, KC_TRNS
+					KC_TRNS, KC_TRNS, KC_TRNS, 							KC_TRNS, KC_TRNS, KC_TRNS
 	),
 
 	[GAME] = LAYOUT(
-    KC_ESC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                   KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,
-    KC_LCTL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                  KC_F7, KC_F8, KC_F9, KC_F10, KC_NO, KC_NO,
-    KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                               KC_PGUP, KC_PGDN, KC_NO, KC_NO, KC_NO, KC_NO,
-                          KC_TAB, MO(WEAPONS), KC_SPC,              KC_ENT, TG(GAME), KC_NO
+    KC_TAB,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_LCTL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_LSFT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,             KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                               KC_TRNS, MO(WEAPONS), KC_SPC,              KC_ENT,  KC_NO, KC_TRNS   
     ),
 
 	[WEAPONS] = LAYOUT(
-    KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5,                                   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_LCTL, KC_A, KC_S, KC_D, KC_F, KC_G,                              KC_6, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_LSFT, KC_Z, KC_X, KC_C, KC_V, KC_B,                               KC_7, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, EEP_RST,
-                              KC_TRNS, KC_TRNS, KC_TRNS,             KC_SPC, KC_TRNS, KC_TRNS, KC_TRNS
+    KC_ESC,  KC_1, 	  KC_TRNS, KC_2,    KC_3, 	 KC_4,            KC_6,    KC_7,  KC_8, 	 KC_9, 		KC_0, 	 KC_DEL,
+    KC_4, 	 KC_TRNS, KC_TRNS, KC_TRNS, KC_5,    KC_TRNS,         KC_F1,   KC_F2, KC_F3, 	 KC_F4,   KC_F5,   KC_F6,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_F7,   KC_F8, KC_F9, 	 KC_F10,  KC_F11,  KC_F12,
+                               KC_TRNS, KC_TRNS, KC_SPC,          KC_ENT,  TG(GAME), KC_TRNS 
     )
 };
 
-void keyboard_post_init_user(void) {
-    // Set RGB to known state
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+		case LGUI_T(KC_SPC):
+            return TAPPING_TERM + 100;
+		case LCTL_T(KC_ESC):
+			return TAPPING_TERM - 50;
+        default:
+            return TAPPING_TERM;
+	}
 }
 
-LEADER_EXTERNS();
 
 void set_keylog(uint16_t keycode, keyrecord_t *record);
 const char *read_layer_state(void);
@@ -82,22 +89,95 @@ const char *read_keylogs(void);
 //const char *pogo(void);
 //const char *kapp(void);
 
+bool leader_succeed;
+LEADER_EXTERNS();
 void matrix_scan_user(void) {
 	LEADER_DICTIONARY() {
-		leading = false;
+		leader_succeed = leading = false;
 		leader_end();
-
 		SEQ_ONE_KEY(KC_F) {
 		  SEND_STRING("QMK is awesome.");
+		  leader_succeed = true;
+		}
+		SEQ_TWO_KEYS(KC_C, KC_D) {
+			SEND_STRING("cd ~/qmk_firmware/keyboards/crkbd/keymaps/curlyLasagna");
+			leader_succeed = true;
 		}
 		SEQ_THREE_KEYS(KC_Y, KC_I, KC_W) {
 		  SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
+		  leader_succeed = true;
 		}
 		SEQ_THREE_KEYS(KC_R, KC_S, KC_T) {
 		  SEND_STRING("cd /home/luis/qmk_firmware; make crkbd:curlyLasagna:dfu");
+		  leader_succeed = true;
+		}
+		SEQ_FOUR_KEYS(KC_R, KC_S, KC_T, KC_L) {
+		  SEND_STRING("cd /home/luis/qmk_firmware; make crkbd:curlyLasagna:dfu-split-left");
+		  leader_succeed = true;
+		}
+		SEQ_FOUR_KEYS(KC_R, KC_S, KC_T, KC_R) {
+		  SEND_STRING("cd /home/luis/qmk_firmware; sudo make crkbd:curlyLasagna:avrdude-split-right");
+		  leader_succeed = true;
 		}
 	}
 }
+
+//void oneshot_mods_changed_user(uint8_t mods) {
+//	uint8_t previous_mode = rgblight_get_mode();
+//	if (mods & MOD_MASK_SHIFT) 
+//		rgblight_mode_noeeprom(RGBLIGHT_MODE_SNAKE+2);
+//	else if(!mods)
+//		rgblight_mode_noeeprom(previous_mode);
+//}
+
+#ifdef RGBLIGHT_LAYERS
+const rgblight_segment_t PROGMEM capslock_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
+	{6, 1, HSV_RED},
+	{13, 1, HSV_RED},
+	{14, 1, HSV_RED}
+);
+
+const rgblight_segment_t PROGMEM lower_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
+	{6, 1, HSV_PURPLE},	
+	{13, 1, HSV_PURPLE},
+	{14, 1, HSV_PURPLE}
+);
+
+const rgblight_segment_t PROGMEM raise_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
+	{6, 1, HSV_TEAL},	
+	{13, 1, HSV_TEAL},
+	{14, 1, HSV_TEAL}
+);
+
+const rgblight_segment_t PROGMEM game_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
+	{6, 1, HSV_YELLOW},
+	{13, 1, HSV_YELLOW},
+	{14, 1, HSV_YELLOW}
+);
+
+const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
+	capslock_enabled,
+	lower_enabled,
+	raise_enabled,
+	game_enabled
+);
+
+void keyboard_post_init_user(void) {
+	rgblight_layers = rgb_layers;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+	rgblight_set_layer_state(LOWER, layer_state_cmp(state, LOWER));
+	rgblight_set_layer_state(RAISE, layer_state_cmp(state, RAISE));
+	rgblight_set_layer_state(GAME, layer_state_cmp(state, GAME));
+	return state;
+}
+
+bool led_update_user(led_t led_state) {
+	rgblight_set_layer_state(0, led_state.caps_lock);
+	return true;
+}
+#endif
 
 #ifdef OLED_DRIVER_ENABLE
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
@@ -106,10 +186,17 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return rotation;
 }
 
+void suspend_power_down_keymap(void) {
+    oled_off();
+}
+
+void suspend_wakeup_init_keymap(void) {
+    oled_on();
+}
+
 char wpm[10];
 const char *read_wpm(void) {
 	snprintf(wpm, sizeof(wpm), "WPM: %d", get_current_wpm());
-	decay_wpm();
 	return wpm;
 }
 
@@ -122,6 +209,35 @@ void render_crkbd_logo(void){
     oled_write_P(crkbd_logo, false);
 }
 
+// Render separator lines for oled display
+void render_separator(void) {
+	oled_write_ln_P(PSTR("<(''<) PEPEGA (>'')>"), false);
+}
+
+// Render current layer state
+void render_layer_state(void){
+	// If you want to change the display of OLED, you need to change here
+    switch (get_highest_layer(layer_state)){
+        case ROOT:
+            oled_write_ln_P(PSTR("Layer: ROOT"), false);
+            break;
+        case LOWER:
+            oled_write_ln_P(PSTR("Layer: LOWER"), false);
+            break;
+        case RAISE:
+            oled_write_ln_P(PSTR("Layer: RAISE"), false);
+            break;
+        case GAME:
+            oled_write_ln_P(PSTR("GAMER MODE"), false);
+            break;
+        case WEAPONS:
+            oled_write_ln_P(PSTR("WEAPONS"), false);
+            break;
+        default:
+            oled_write_ln_P(PSTR("?????????????????"), false);
+    }
+}
+
 void oled_task_user(void) {
     if (timer_elapsed32(oled_timer) > OLED_TIMEOUT) {
         oled_off();
@@ -131,8 +247,8 @@ void oled_task_user(void) {
 		if (is_master) {
 			render_crkbd_logo();
 		} else {
-			oled_write_ln(read_layer_state(), false);
-			oled_write_ln(read_keylog(), false);
+			render_layer_state();
+			render_separator();
 			oled_write_ln(read_wpm(), false);
 		}
     }

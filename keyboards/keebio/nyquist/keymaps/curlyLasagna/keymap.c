@@ -3,31 +3,58 @@
 enum layers {
 	ROOT,
 	LOWER,
-	RAISE
+	RAISE,
+	GAME,
+	WEAPONS
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT_ortho_4x12(
-			KC_TAB,  KC_Q,    KC_W, 	KC_E,    KC_R,      		KC_T,           KC_Y,              KC_U,     			 KC_I,     KC_O,    KC_P,    KC_DEL, 
-			KC_LCTL, KC_A,    KC_S, 	KC_D,    KC_F,      		KC_G,           KC_H,              KC_J,     			 KC_K,     KC_L,    KC_SCLN, KC_LALT, 
-			KC_LSFT, KC_Z,    KC_X, 	KC_C,    KC_V,      		KC_B,           KC_N,              KC_M,     			 KC_COMM,  KC_DOT,  KC_SLSH, KC_LEAD, 
-			KC_LCTL, KC_NO,   KC_LGUI,  KC_LALT, LT(LOWER, KC_ESC), LSFT_T(KC_SPC), LGUI_T(KC_ENT),    LT(RAISE, KC_BSPC), 	 KC_LEFT,  KC_DOWN, KC_UP,   KC_RGHT
+			KC_TAB,  			  KC_Q,    KC_W, 	  KC_E,    KC_R,      KC_T,           KC_Y,           KC_U,     		  	  KC_I,     KC_O,    KC_P,    KC_BSPC, 
+			LCTL_T(KC_ESC), KC_A,    KC_S, 	  KC_D,    KC_F,      KC_G,           KC_H,           KC_J,     		  	  KC_K,     KC_L,    KC_SCLN, KC_QUOT, 
+			OSM(MOD_LSFT),  KC_Z,    KC_X, 	  KC_C,    KC_V,      KC_B,           KC_N,           KC_M,     		  	  KC_COMM,  KC_DOT,  KC_SLSH, KC_LEAD, 
+			KC_LCTL, 				RGB_TOG, KC_LGUI, KC_LALT, MO(LOWER), LGUI_T(KC_SPC), LSFT_T(KC_ENT), LT(RAISE, KC_BSPC), KC_LEFT,  KC_DOWN, KC_UP,   KC_RGHT
 	),
 
 	[LOWER] = LAYOUT_ortho_4x12(
-			KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_TRNS, 
-			KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, KC_DEL,  KC_TRNS, KC_LBRC, KC_RBRC, KC_BSLS, KC_QUOT, KC_TRNS, KC_TRNS, 
-			KC_TRNS, KC_MPRV, KC_MPLY, KC_MNXT, KC_BSPC, KC_TRNS, KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
-			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_PGDN, KC_PGUP, KC_END,  RESET
+			KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    			KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_DEL, 
+			KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, RGB_MOD, RGB_VAI, 			KC_LBRC, KC_RBRC, KC_BSLS, KC_TRNS, KC_TRNS, KC_TRNS, 
+			KC_TRNS, KC_MPRV, KC_MPLY, KC_MNXT, RGB_HUI, RGB_SAI, 			KC_MINS, KC_EQL,  KC_TRNS, KC_TRNS, KC_TRNS, RESET, 
+			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS
 	),
 
-	[RAISE] = LAYOUT_ortho_4x12(
-			KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, 
-			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS,  KC_TRNS, 
-			KC_TRNS, KC_LCTL, KC_LGUI, KC_LALT, KC_PSCR, KC_BRK,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DEL,  KC_TRNS, 
-			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TAB,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_CAPS
+	[RAISE] = LAYOUT_ortho_4x12 (
+			KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   				KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, 
+			KC_TRNS, DM_REC1, DM_REC2, DM_PLY1, DM_PLY2, DM_RSTP, 				KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_INS,  KC_TRNS, 
+			KC_TRNS, KC_LCTL, KC_LGUI, KC_LALT, KC_PSCR, KC_BRK,  				KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_DEL,  KC_CAPS, 
+			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 			  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TG(GAME)
+	),
+
+	[GAME] = LAYOUT_ortho_4x12 (
+			KC_TAB,  		KC_Q,    KC_W, 	  KC_E,    KC_R,  	    KC_T,    KC_Y,     KC_U,      KC_I,    KC_O,    KC_P,    KC_BSPC, 
+			KC_ESC, 		KC_A,    KC_S, 	  KC_D,    KC_F,  	    KC_G,    KC_H,     KC_J,      KC_K,    KC_L,    KC_SCLN, KC_QUOT, 
+			KC_LSFT, 		KC_Z,    KC_X, 	  KC_C,    KC_V,  	    KC_B,    KC_N,     KC_M,      KC_COMM, KC_DOT,  KC_SLSH, KC_LEAD, 
+			KC_LCTL, 	  RGB_TOG, KC_LGUI, KC_LALT, MO(WEAPONS), KC_SPC,  KC_ENT,  MO(RAISE),  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+	),
+
+	[WEAPONS] = LAYOUT_ortho_4x12 (
+			KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    				KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_DEL, 
+			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 				KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, 
+			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 				KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, 
+			KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 			  KC_TRNS, TG(GAME), KC_HOME, KC_PGDN, KC_PGUP, KC_END
 	)
 };
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LGUI_T(KC_SPC):
+            return TAPPING_TERM + 100;
+		case LCTL_T(KC_ESC):
+			return TAPPING_TERM - 50;
+        default:
+            return TAPPING_TERM;
+	}
+}
 
 LEADER_EXTERNS();
 
@@ -43,12 +70,20 @@ void matrix_scan_user(void) {
     SEQ_TWO_KEYS(KC_D, KC_W) {
       SEND_STRING(SS_LCTL("a") SS_LCTL("c"));
     }
-    SEQ_THREE_KEYS(KC_D, KC_D, KC_S) {
-      SEND_STRING("https://start.duckduckgo.com\n");
+    SEQ_TWO_KEYS(KC_C, KC_D) {
+      SEND_STRING("cd ~/qmk_firmware/keyboards/keebio/nyquist/keymaps/curlyLasagna");
+    }
+    SEQ_THREE_KEYS(KC_R, KC_S, KC_T) {
+      SEND_STRING("cd ~/qmk_firmware; make keebio/nyquist/rev3:curlyLasagna:dfu");
+    }
+    SEQ_FOUR_KEYS(KC_R, KC_S, KC_T, KC_R) {
+      SEND_STRING("cd ~/qmk_firmware; make keebio/nyquist/rev3:curlyLasagna:dfu-split-right");
+    }
+    SEQ_FOUR_KEYS(KC_R, KC_S, KC_T, KC_L) {
+      SEND_STRING("cd ~/qmk_firmware; make keebio/nyquist/rev3:curlyLasagna:dfu-split-left");
     }
   }
 }
-
 
 //const rgblight_segment_t PROGMEM lower[] = RGBLIGHT_LAYER_SEGMENTS(
 //    {0, 2, HSV_RED}

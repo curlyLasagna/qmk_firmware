@@ -1,9 +1,8 @@
-EXTRAFLAGS += -flto
-
 # Enabled settings
-RGBLIGHT_ENABLE = yes
+LTO_ENABLE = yes
 LEADER_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
+RGBLIGHT_ENABLE = yes
 
 # Disabled settings
 MOUSEKEY_ENABLE = no

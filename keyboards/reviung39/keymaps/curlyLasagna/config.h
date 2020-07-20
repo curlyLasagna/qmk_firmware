@@ -17,29 +17,30 @@
 #pragma once
 
 // place overrides here
-#define RGB_DI_PIN D3
 #define NO_ACTION_FUNCTION
 #define NO_ACTION_MACRO
 #ifndef NO_DEBUG
 #define NO_DEBUG
 #endif // !NO_DEBUG
 #if !defined(NO_PRINT) && !defined(CONSOLE_ENABLE)
-#define NO_PRINT
+	#define NO_PRINT
 #endif // !NO_PRINT
 
 #define TAPPING_TERM 250
+#define TAPPING_TERM_PER_KEY
+
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
 
 /* One shot settings */
 #define ONESHOT_TAP_TOGGLE 3
-#define ONESHOT_TIMEOUT 2000
-
+#define ONESHOT_TIMEOUT 500
 /* Leader key */
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 300
 
+#define RGB_DI_PIN D3
 #ifdef RGB_DI_PIN
 	#define RGBLIGHT_LAYERS
 	#define RGBLED_NUM 11
@@ -53,6 +54,9 @@
 	#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 	#define RGBLIGHT_EFFECT_STATIC_GRADIENT
 	#define RGBLIGHT_EFFECT_ALTERNATING
+	#define RGBLIGHT_EFFECT_SNAKE
+	#define RGBLIGHT_EFFECT_KNIGHT
+	#define RGBLIGHT_EFFECT_TWINKLE
 	//#define RGBLIGHT_EFFECT_CHRISTMAS
 	//#define RGBLIGHT_EFFECT_BREATHING
 

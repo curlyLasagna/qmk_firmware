@@ -25,10 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0300
 #define MANUFACTURER    Keebio
 #define PRODUCT         The Nyquist Keyboard
-#define DESCRIPTION     Split 60 percent ortholinear keyboard
+#define DESCRIPTION     Split 40 percent ortholinear keyboard
 
+#define NO_USB_STARTUP_CHECK
 #define SOFT_SERIAL_PIN D0
-#define MASTER_LEFT
+#define EE_HANDS
 
 /* key matrix size */
 // Rows are doubled-up
@@ -55,29 +56,27 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLED_SPLIT { 6, 6 }
 
 /* enabled animations*/
-#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#define RGBLIGHT_EFFECT_RAINBOW_MOOD
-#define RGBLIGHT_EFFECT_GRADIENT
+#define RGBLIGHT_ANIMATIONS
+
+/* Mod-Tap configurations */
+#define IGNORE_MOD_TAP_INTERRUPT
+#define TAPPING_TERM_PER_KEY
+#define TAPPING_FORCE_HOLD
+#define TAPPING_TERM 200
+#define PERMISSIVE_HOLD
+
+/* Leader key configurations*/
+#define LEADER_PER_KEY_TIMING 
+#define LEADER_TIMEOUT 300
 
 /*
  * Feature disable options
  *  These options are also useful to firmware size reduction.
  */
 
-/* disable debug print */
-//#define NO_DEBUG
-
-/* disable print */
-//#define NO_PRINT
-
 /* disable action features */
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
-#define PERMISSIVE_HOLD
-#define IGNORE_MOD_TAP_INTERRUPT
-#define LEADER_TIMEOUT 300
-#define LEADER_PER_KEY_TIMING 
+
 
 #endif
