@@ -110,7 +110,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 #ifdef OLED_DRIVER_ENABLE
-oled_rotation_t oled_init_user(oled_rotation_t rotation) { return OLED_ROTATION_270; }
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+#    ifndef SPLIT_KEYBOARD
+    if (is_master) {
+#    endif
+        return OLED_ROTATION_270;
+#    ifndef SPLIT_KEYBOARD
+    }  else {
+        return rotation;
+    }
+#    endif
+}
 #endif
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
