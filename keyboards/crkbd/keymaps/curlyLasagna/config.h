@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#define OLED_FONT_H "keyboards/crkbd/keymaps/curlyLasagna/glcdfont_godspeed.c"
+#define OLED_FONT_H "keyboards/crkbd/keymaps/curlyLasagna/glcdfonts/glcdfont_godspeed.c"
 #undef USE_I2C
 #define USE_SERIAL_PD2
 
@@ -39,13 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
 
-
-#define ONESHOT_TAP_TOGGLE 3
-#define ONESHOT_TIMEOUT 2500
-
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 300
-#define EE_HANDS
+
+#define MASTER_LEFT
 
 #ifdef RGBLIGHT_ENABLE
 	#undef RGBLED_NUM
@@ -56,11 +53,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	#define RGBLIGHT_HUE_STEP 10
 	#define RGBLIGHT_SAT_STEP 17
 	#define RGBLIGHT_VAL_STEP 17
-	#define RGBLIGHT_EFFECT_SNAKE
-	#define RGBLIGHT_EFFECT_TWINKLE
 	#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
 	#define RGBLIGHT_EFFECT_RAINBOW_GRADIENT
-	#define RGBLIGHT_EFFECT_RAINBOW_ALTERNATING
 	#define RGBLIGHT_LAYERS
 #endif
 
