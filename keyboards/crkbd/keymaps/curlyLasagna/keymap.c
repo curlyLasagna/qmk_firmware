@@ -21,7 +21,7 @@ extern rgblight_config_t rgblight_config;
 
 /* RHS MOD-TAPS */
 #define KC_R1 RCTL_T(KC_ENT)
-#define KC_R2 RALT_T(KC_RGUI)
+#define KC_R2 RGUI_T(KC_RALT)
 
 /* RGB */
 #define KC_MODE RGB_MOD
@@ -49,13 +49,13 @@ enum layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT_kc(
 	/*-------------------------------------------------------------------------*/
-	TAB,	Q, 		W,		E, 		R,   	T, 	 			Y, 		U, 		I, 	  O,  	P, 	 	BSPC, 
+	TAB,    Q, 		W,		E, 		R,   	T, 	 		Y, 		U, 		I, 	  O,  	P, 	 	BSPC, 
 	/*-------------------------------------------------------------------------*/
-	L1,		A, 		S,  	D, 		F, 	 	G, 	 			H, 		J, 		K, 	  L,  	SCLN,	QUOT, 
+	L1,		A, 		S,  	D, 		F, 	 	G, 	 		H, 		J, 		K, 	  L,  	SCLN,	QUOT, 
 	/*-------------------------------------------------------------------------*/
 	LSFT,	Z, 		X,  	C, 		V, 	 	B, 	   		N, 		M, 		COMM, DOT, 	SLSH,	RSFT, 
 	/*-------------------------------------------------------------------------*/
-										L2, 	LOW, 	L0, 			R1, 	RISE,	R2
+	L2, 	LOW, 	L0, 			        R1, 	RISE,	R2
 	),
 											
 	[LOWER] = LAYOUT_kc(
