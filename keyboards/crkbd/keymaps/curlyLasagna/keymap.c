@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/*-------------------------------------------------------------------------*/
 	LSFT,	Z, 		X,  	C, 		V, 	 	B, 	   		N, 		M, 		COMM, DOT, 	SLSH,	RSFT, 
 	/*-------------------------------------------------------------------------*/
-	L2, 	LOW, 	L0, 			        R1, 	RISE,	R2
+	                        L2, 	LOW, 	L0, 	    R1, 	RISE,	R2
 	),
 											
 	[LOWER] = LAYOUT_kc(
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/*--------------------------------------------------------------------------*/
 	TRNS, MPRV, MPLY, MNXT, HUE,  SAT, 	   	MINS, EQL,  TRNS, TRNS, TRNS, TRNS, 
 	/*--------------------------------------------------------------------------*/
-										TRNS, TRNS, TRNS, 	 	TRNS, GAMER, TRNS
+					TRNS, TRNS, TRNS, 	 	TRNS, GAMER, TRNS
 	),
 
 	[RAISE] = LAYOUT_kc(
@@ -157,27 +157,19 @@ void matrix_scan_user(void) {
 
 #ifdef RGBLIGHT_LAYERS
 const rgblight_segment_t PROGMEM capslock_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
-	{6, 1, HSV_RED},
-	{13, 1, HSV_RED},
-	{14, 1, HSV_RED}
+	{0, 5, HSV_RED}
 );
 
 const rgblight_segment_t PROGMEM lower_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
-	{6, 1, HSV_PURPLE},	
-	{13, 1, HSV_PURPLE},
-	{14, 1, HSV_PURPLE}
+	{0, 5, HSV_PURPLE}	
 );
 
 const rgblight_segment_t PROGMEM raise_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
-	{6, 1, HSV_TEAL},	
-	{13, 1, HSV_TEAL},
-	{14, 1, HSV_TEAL}
+	{0, 5, HSV_TEAL}	
 );
 
 const rgblight_segment_t PROGMEM game_enabled[] = RGBLIGHT_LAYER_SEGMENTS (
-	{6, 1, HSV_YELLOW},
-	{13, 1, HSV_YELLOW},
-	{14, 1, HSV_YELLOW}
+	{0, 5, HSV_YELLOW}
 );
 
 const rgblight_segment_t* const PROGMEM rgb_layers[] = RGBLIGHT_LAYERS_LIST(
