@@ -16,6 +16,7 @@
 *.swp
 tags
 *~
+api_data/v1
 build/
 .build/
 *.bak
@@ -30,7 +31,6 @@ doxygen/
 /util/wsl_downloaded
 /util/win_downloaded
 # Ignore keyboards I don't own
-/keyboards/*
 /keyboards/*/Makefile
 /keyboards/*/*/Makefile
 /keyboards/*/*/*/Makefile
@@ -41,21 +41,6 @@ doxygen/
 /keyboards/*/*/*/keymaps/Makefile
 /keyboards/*/*/*/*/keymaps/Makefile
 /keyboards/*/*/*/*/*/keymaps/Makefile
-
-# Keyboards that I do own
-!/keyboards/crkbd/
-!/keyboards/crkbd/*
-!/keyboards/crkbd/**/*
-!/keyboards/keebio/
-!/keyboards/keebio/*
-!/keyboards/keebio/nyquist/
-!/keyboards/keebio/nyquist/*
-!/keyboards/reviung39/
-!/keyboards/reviung39/*
-!/keyboards/reviung39/**/*
-!/keyboards/niu_mini/
-!/keyboards/niu_mini/*
-!/keyboards/niu_mini/**/*
 
 # Eclipse/PyCharm/Other IDE Settings
 .cproject
