@@ -9,7 +9,6 @@
 #define KC_RISE 	LT(RAISE, KC_ENT)
 #define KC_WEAP 	MO(WEAPONS)
 #define KC_SPCG 	LGUI_T(KC_SPC)
-#define KC_GAME 	TG(GAME)
 
 #define KC_R0 		RALT_T(KC_COMM)
 #define KC_R1 		RGUI_T(KC_DOT)
@@ -36,40 +35,25 @@ enum layers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[ROOT] = LAYOUT_kc(
-	TAB, 	Q, 		W,	 	E, 		R, 		T, 		 /*|*/	Y, 		U,		I, 		O,  	P, 	  BSPC, 
-	HKKB,	A, 		S, 	 	D, 		F,		G, 		 /*|*/	H, 		J,		K, 		L,  	SCLN, QUOT, 
-	LSFT,	CTLZ, GUIX, ALTC, V, 		B, 		 /*|*/  N, 		M,		R0, 	R1, 	R2, 	RSFT,
-																LOW, 		SPCG, RISE
+	TAB, 	Q, 		W,	 	  E, 		R, 		T, 		 /*|*/	Y, 		U,		I, 		O,  	P, 	  BSPC, 
+	HKKB,	A, 		S, 	 	  D, 		F,		G, 		 /*|*/	H, 		J,		K, 		L,  	SCLN, QUOT, 
+	LSFT,	CTLZ,   GUIX,     ALTC,     V, 		B, 		 /*|*/  N, 		M,		R0, 	R1, 	R2,   RSFT,
+									                LOW, SPCG, RISE
 	),
 											
 	[LOWER] = LAYOUT_kc(
-	GRV,  1, 	  2,    3,    4,    5,    	/*|*/ 6,    7,    8,    9,    0,    DEL,
-	TRNS, MUTE, VOLD, VOLU, MODE, BRIGHT, /*|*/ LBRC, RBRC, BSLS, PSCR, BRK, 	INS, 
-	TRNS, MPRV, MPLY, MNXT, HUE, 	SAT, 		/*|*/ MINS, EQL,  TRNS, TRNS, TRNS, TRNS, 
-																	TRNS, TRNS, GAME
+	CAPS, 1, 	2,    3,    4,    5,      /*|*/ 6,    7,    8,    9,    0,    GRV,
+	TRNS, MUTE, VOLD, VOLU, MODE, BRIGHT, /*|*/ LBRC, RBRC, BSLS, TRNS, INS,  DEL, 
+	TRNS, MPRV, MPLY, MNXT, HUE,  SAT, 	  /*|*/ MINS, EQL,  TRNS, TRNS, TRNS, TRNS, 
+								    TRNS, TRNS, TRNS
 	),
 
 	[RAISE] = LAYOUT_kc(
 	F1,   F2,   F3,   F4,    F5,   F6,   /*|*/  F7,   F8,   F9,   F10,   F11,   F12, 
 	TRNS, REC1, REC2, PLY1,  PLY2, STOP, /*|*/  LEFT, DOWN, UP,   RGHT,  LEAD,  TRNS,
 	TRNS, TRNS, TRNS, TRNS,  TRNS, TRNS, /*|*/ 	HOME, PGDN, PGUP, END,   TRNS,  TRNS, 
-																	CAPS, TRNS, TRNS
+									TRNS, TRNS, TRNS
 	),
-
-	[GAME] = LAYOUT_kc(
-	TAB,	Q, 	W, 	E, 	R, 	T, /*|*/	Y, 	U, 	I, 	 O, 	 P, 	  BSPC, 
-	LCTL,	A, 	S, 	D, 	F,	G, /*|*/	H, 	J, 	K, 	 L, 	 SCLN, QUOT, 
-	LSFT, Z, 	X, 	C, 	V, 	B, /*|*/  N, 	M, 	COMM, DOT, SLSH, TRNS, 
-											WEAP, SPC, ENT
-	),
-
-	[WEAPONS] = LAYOUT_kc(
-	ESC,  1, 	  TRNS,    2,    	3,    TRNS, /*|*/ 	6,  7,   8,  9,   0,   DEL,
-	4, 	 	TRNS, TRNS, 	 TRNS, 	5, 		TRNS, /*|*/ 	F1, F2,  F3, F4,  F5,  F6, 
-	TRNS, TRNS, TRNS, 	 LALT, 	TRNS, TRNS, /*|*/ 	F7, F8,  F9, F10, F11, F12, 
-																		TRNS, TRNS, GAME
-
-	)
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -77,9 +61,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case LGUI_T(KC_SPC):
             return TAPPING_TERM + 100;
 		case LCTL_T(KC_ESC):
-		   	return TAPPING_TERM	- 50;
-		case RSFT_T(KC_SLSH):
-				return TAPPING_TERM - 100;
+		   	return TAPPING_TERM	- 100;
         default:
             return TAPPING_TERM;
 	}

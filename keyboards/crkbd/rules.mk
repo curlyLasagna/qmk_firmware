@@ -37,10 +37,7 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 # CFLAGS += -flto
 LAYOUTS = split_3x5_3 split_3x6_3
 
-<<<<<<< HEAD
 DEFAULT_FOLDER = crkbd/rev1
 #RGBLIGHT_ENABLE = no
 #RGB_MATRIX_ENABLE = WS2812
-=======
 DEFAULT_FOLDER = crkbd/rev1/legacy
->>>>>>> upstream/master

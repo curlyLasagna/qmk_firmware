@@ -11,7 +11,7 @@ extern rgblight_config_t rgblight_config;
 /* LAYERS */
 #define KC_LOW MO(LOWER)
 #define KC_GAMER TG(GAME)
-#define KC_RISE LT(RAISE, KC_CAPS)
+#define KC_RISE MO(RAISE)
 #define KC_WEP MO(WEAPONS)
 
 /* LHS MOD-TAPS */
@@ -59,10 +59,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	),
 											
 	[LOWER] = LAYOUT_kc(
+	aazz*--------------------------------------------------------------------------*/
+	CAPS,  1,  	2,    3,    4,    5,        6,    7,    8,    9,    0,    GRV, 
 	/*--------------------------------------------------------------------------*/
-	GRV,  1,   	2,    3,    4,    5,    	 	6,    7,    8,    9,    0,   	DEL, 
-	/*--------------------------------------------------------------------------*/
-	TRNS, MUTE, VOLD, VOLU, MODE, BRIGHT,   LBRC, RBRC, BSLS, PSCR, BRK, 	INS, 
+	TRNS, MUTE, VOLD, VOLU, MODE, BRIGHT,   LBRC, RBRC, BSLS, PSCR, BRK,  DEL, 
 	/*--------------------------------------------------------------------------*/
 	TRNS, MPRV, MPLY, MNXT, HUE,  SAT, 	   	MINS, EQL,  TRNS, TRNS, TRNS, TRNS, 
 	/*--------------------------------------------------------------------------*/
@@ -71,33 +71,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	[RAISE] = LAYOUT_kc(
 	/*--------------------------------------------------------------------------*/
-	F1,   F2,   F3,   F4,   F5,   F6,   		F7,   F8,   F9,   F10,   F11,  F12, 
+	F1,   F2,   F3,   F4,   F5,   F6,   	F7,   F8,   F9,   F10,   F11,  F12, 
 	/*--------------------------------------------------------------------------*/
-	TRNS, RECF, RECS, PLYF, PLYS, STOP,			LEFT, DOWN, UP,   RGHT,  LEAD, TRNS, 
+	TRNS, RECF, RECS, PLYF, PLYS, STOP,		LEFT, DOWN, UP,   RGHT,  LEAD, TRNS, 
 	/*--------------------------------------------------------------------------*/
-	TRNS, RST, TRNS, CAPS,	TRNS, TRNS,  		HOME, PGDN, PGUP, END,   TRNS, TRNS, 
+	TRNS, RST, TRNS, TRNS,	TRNS, TRNS,  	HOME, PGDN, PGUP, END,   TRNS, TRNS, 
 	/*--------------------------------------------------------------------------*/
-										TRNS, TRNS, TRNS, 		TRNS, TRNS, TRNS
+					 TRNS, TRNS, TRNS, 		TRNS, TRNS, TRNS
 	),
 
 	[GAME] = LAYOUT_kc(
 	/*--------------------------------------------------------------------------*/
-  TAB,  TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+    TAB,  TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
 	/*--------------------------------------------------------------------------*/
-  LCTL, TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
+    LCTL, TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,
 	/*--------------------------------------------------------------------------*/
-  LSFT, TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, COMM, DOT,  TRNS, TRNS,
+    LSFT, TRNS, TRNS, TRNS, TRNS, TRNS,     TRNS, TRNS, COMM, DOT,  TRNS, TRNS,
 	/*--------------------------------------------------------------------------*/
-                    LALT, WEP, 	SPC,      ENT,  NO, TRNS   
+                      LALT, WEP,  SPC,      ENT,  NO, TRNS   
 	),
 
 	[WEAPONS] = LAYOUT_kc(
 	/*--------------------------------------------------------------------------*/
-    ESC,  1, 	  TRNS, 2,    3, 		4,       6,     7,   8, 	 9, 	0, 	 DEL,
+    ESC,  1, 	TRNS, 2,    3, 	  4,       6,  7,   8,   9,   0,   DEL,
 	/*--------------------------------------------------------------------------*/
-    4, 	 	TRNS, TRNS, TRNS, 5,    TRNS,    F1,    F2,  F3,  F4,  F5,  F6,
+    4, 	  TRNS, TRNS, TRNS, 5,    TRNS,    F1, F2,  F3,  F4,  F5,  F6,
 	/*--------------------------------------------------------------------------*/
-    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,    F7,    F8, 	F9,  F10, F11, F12,
+    TRNS, TRNS, TRNS, TRNS, TRNS, TRNS,    F7, F8,  F9,  F10, F11, F12,
 	/*--------------------------------------------------------------------------*/
                       TRNS, TRNS, SPC,     TRNS, GAMER, TRNS 
 	)
