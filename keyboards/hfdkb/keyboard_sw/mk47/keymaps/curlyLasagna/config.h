@@ -19,7 +19,7 @@
  #define FORCE_NKRO
 
 #define TAP_CODE_DELAY 5
-#define TAPPING_TERM_PER_KEY
+#define PERMISSIVE_HOLD
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
