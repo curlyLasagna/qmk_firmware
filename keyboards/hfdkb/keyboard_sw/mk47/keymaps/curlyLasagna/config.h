@@ -16,10 +16,11 @@
 #pragma once
 
 /* Force NKRO on boot up regardless of the setting saved in the EEPROM (uncomment to enable it) */
- #define FORCE_NKRO
-
+#define FORCE_NKRO
+#define TAPPING_TERM 200
+#define QUICK_TAP_TERM 150
+#define IGNORE_MOD_TAP_INTERRUPT
 #define TAP_CODE_DELAY 5
-#define PERMISSIVE_HOLD
 
 /* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
 #define LOCKING_SUPPORT_ENABLE
