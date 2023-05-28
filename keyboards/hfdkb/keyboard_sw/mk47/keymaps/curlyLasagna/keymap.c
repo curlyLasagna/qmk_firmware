@@ -20,7 +20,7 @@
 #define LCTAP LCTL_T(KC_S)
 #define LMTAP LOPT_T(KC_D)
 #define LSTAP LCMD_T(KC_F)
-#define RSHTP RSFT_T(KC_QUOT)
+#define RSHTP RSFT_T(KC_SCLN)
 #define RCTAP RCTL_T(KC_L)
 #define RMTAP ROPT_T(KC_K)
 #define RSTAP RCMD_T(KC_J)
